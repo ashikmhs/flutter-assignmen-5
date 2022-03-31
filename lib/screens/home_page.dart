@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,10 +20,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.lightbulb),
+              onPressed: () {
+                Get.isDarkMode
+                    ? Get.changeTheme(ThemeData.light())
+                    : Get.changeTheme(ThemeData.dark());
+              })
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -31,7 +40,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Lottie.network(
-                'https://assets3.lottiefiles.com/packages/lf20_s50p1rff.json',
+                Get.isDarkMode
+                    ? 'https://assets6.lottiefiles.com/packages/lf20_3b0nevpm.json'
+                    : "https://assets3.lottiefiles.com/packages/lf20_s50p1rff.json",
                 height: 150.h,
                 width: 150.w,
               ),
@@ -62,7 +73,6 @@ class _HomePageState extends State<HomePage> {
                   labelStyle: TextStyle(
                     fontSize: 16.sp,
                     color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold,
                   ),
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -96,7 +106,6 @@ class _HomePageState extends State<HomePage> {
                   labelStyle: TextStyle(
                     fontSize: 16.sp,
                     color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold,
                   ),
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -123,10 +132,9 @@ class _HomePageState extends State<HomePage> {
                   }
                 },
                 child: Text(
-                  'Sign In',
+                  'sign_in_btn'.tr,
                   style: TextStyle(
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
